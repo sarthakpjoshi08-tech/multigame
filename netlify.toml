@@ -1,0 +1,18 @@
+[build]
+  command = "npm install"
+  publish = "public"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["server.js", "package.json", "package-lock.json"]
+
+[[redirects]]
+  from = "/socket.io/*"
+  to = "/.netlify/functions/socket/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
